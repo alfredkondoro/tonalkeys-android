@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/keyboard_root"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <!-- Letter Keyboard Layout -->
+    <include
+        android:id="@+id/letter_keyboard_root"
+        layout="@layout/letter_keyboard_layout" />
+
+    <!-- Emoji Keyboard Layout (Search-based) -->
+    <include
+        android:id="@+id/emoji_keyboard_root"
+        layout="@layout/emoji_search_layout"
+        android:visibility="gone" />
+
+</FrameLayout>

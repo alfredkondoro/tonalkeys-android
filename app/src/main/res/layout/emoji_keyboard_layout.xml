@@ -1,0 +1,64 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/emoji_keyboard_layout"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="6dp"
+    android:background="#1B1B1B">
+
+    <!-- Search bar (optional placeholder for layout consistency) -->
+    <EditText
+        android:id="@+id/search_input"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Tafuta Emoji"
+        android:focusable="false"
+        android:clickable="true"
+        android:inputType="none" />
+
+    <!-- Category Buttons Row -->
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fillViewport="true"
+        android:paddingVertical="6dp">
+
+        <LinearLayout
+            android:id="@+id/category_buttons"
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <Button android:id="@+id/key_alphanumeric" android:text="🔤" style="@style/EmojiCategoryButton"/>
+            <View
+                android:layout_width="1dp"
+                android:layout_height="24dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginHorizontal="6dp"
+                android:background="#888888" />
+            <Button android:id="@+id/category_smileys" android:text="😊" style="@style/EmojiCategoryButton"/>
+            <Button android:id="@+id/category_animals" android:text="🐶" style="@style/EmojiCategoryButton"/>
+            <Button android:id="@+id/category_food" android:text="🍎" style="@style/EmojiCategoryButton"/>
+            <Button android:id="@+id/category_activities" android:text="⚽️" style="@style/EmojiCategoryButton"/>
+            <Button android:id="@+id/category_travel" android:text="🚗" style="@style/EmojiCategoryButton"/>
+            <Button android:id="@+id/category_objects" android:text="💡" style="@style/EmojiCategoryButton"/>
+            <Button android:id="@+id/category_symbols" android:text="❤️" style="@style/EmojiCategoryButton"/>
+            <Button android:id="@+id/category_flags" android:text="⚐" style="@style/EmojiCategoryButton"/>
+        </LinearLayout>
+    </HorizontalScrollView>
+
+    <!-- Grid of Emojis -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/emoji_grid"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:paddingTop="6dp" />
+
+    <!-- Return to QWERTY -->
+<!--    <Button-->
+<!--        android:id="@+id/key_alphanumeric"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="ABC"-->
+<!--        style="@style/KeyButton" />-->
+</LinearLayout>

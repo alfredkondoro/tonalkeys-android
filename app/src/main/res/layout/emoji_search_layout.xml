@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/emoji_search_root"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="#1b1b1b"
+    android:padding="4dp">
+
+    <!-- Search Bar -->
+    <EditText
+        android:id="@+id/search_input"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:hint="Tafuta emoji kwa Kiswahili..."
+        android:padding="8dp"
+        android:background="@android:drawable/edit_text"
+        android:inputType="text" />
+
+    <!-- Horizontal list of filtered emojis -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/emoji_list"
+        android:layout_width="match_parent"
+        android:layout_height="72dp"
+        android:layout_marginTop="8dp"
+        android:clipToPadding="false"
+        android:scrollbars="horizontal" />
+
+    <!-- QWERTY keyboard underneath will be added via layout switch -->
+    <include layout="@layout/letter_keyboard_layout" />
+</LinearLayout>
