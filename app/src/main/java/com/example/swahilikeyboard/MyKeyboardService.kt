@@ -259,16 +259,19 @@ class MyKeyboardService : InputMethodService() {
 
         searchInput.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
-                val query = s.toString()
+                val query = s.toString().lowercase()
                 val filtered = allEmojis.filter { emojiItem ->
-                    matchesSwahili(query, emojiItem.swahiliDescription) ||
-                            emojiItem.swahiliVerbs.any { verb -> matchesSwahili(query, verb) }
+                    emojiItem.swahiliDescription.lowercase().contains(query) ||
+                            emojiItem.swahiliVerbs.contains(query) ||
+                            emojiItem.english.lowercase().contains(query)
                 }
                 adapter.updateEmojiList(filtered)
             }
+
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
         })
+
 
         view.findViewById<Button>(R.id.key_alphanumeric)?.setOnClickListener {
             targetSearchInput = null
@@ -276,6 +279,17 @@ class MyKeyboardService : InputMethodService() {
         }
 
         setupLetterKeyboard(view) // Add working keyboard inside search layout
+
+        view.findViewById<Button>(R.id.key_backspace)?.setOnClickListener {
+            targetSearchInput?.let {
+                val editable = it.text
+                val start = it.selectionStart
+                if (start > 0) {
+                    editable?.delete(start - 1, start)
+                }
+            } ?: currentInputConnection?.deleteSurroundingText(1, 0)
+        }
+
     }
 
     private fun loadEmojiData(): List<EmojiItem> {
@@ -284,4 +298,5 @@ class MyKeyboardService : InputMethodService() {
         val rawList: List<EmojiRawItem> = Gson().fromJson(jsonString, listType)
         return rawList.map { it.toEmojiItem() }
     }
+
 }
